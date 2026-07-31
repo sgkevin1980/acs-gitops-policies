@@ -1,0 +1,4 @@
+# Never commit credentials
+base/credentials.yaml
+**/secrets/
+*.secret.yaml
