@@ -1,0 +1,23 @@
+apiVersion: config.stackrox.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: gitops-require-team-label
+  namespace: stackrox
+spec:
+  policyName: "GitOps - Require Team Label"
+  description: "Deployed via GitOps. Ensures all deployments have a 'team' label for ownership tracking."
+  rationale: "Without ownership labels, orphaned workloads accumulate and nobody takes responsibility for vulnerabilities."
+  remediation: "Add metadata.labels.team to your Deployment spec."
+  categories:
+  - "DevOps Best Practices"
+  lifecycleStages:
+  - DEPLOY
+  severity: MEDIUM_SEVERITY
+  enforcementActions: []
+  disabled: false
+  policySections:
+  - sectionName: "Team Label Required"
+    policyGroups:
+    - fieldName: "Required Label"
+      values:
+      - value: "team="
